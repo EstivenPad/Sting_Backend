@@ -9,7 +9,7 @@ namespace Infrastructure.Interfaces.BaseRepository
     public interface IBaseRepository<T> where T : class
     {
         /// <summary>
-        /// This method gets all the objects in the database 
+        /// This method gets all the objects in the database  
         /// </summary>
         /// <returns></returns>
         Task<List<T>> GetAll();
