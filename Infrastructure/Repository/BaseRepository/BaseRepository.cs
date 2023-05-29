@@ -1,6 +1,7 @@
 ﻿using Infrastructure.Data.Context;
 using Infrastructure.Interfaces.BaseRepository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,8 @@ namespace Infrastructure.Repository.BaseRepository
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        private readonly DatabaseContext _context;
+        protected DatabaseContext _context;
+        
         public BaseRepository(DatabaseContext context)
         {
             _context = context;
