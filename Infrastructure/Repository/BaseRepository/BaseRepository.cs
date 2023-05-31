@@ -18,7 +18,7 @@ namespace Infrastructure.Repository.BaseRepository
         {
             _context = context;
         }
-        public async Task<bool> Create(T entity)
+        public async virtual Task<bool> Create(T entity)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace Infrastructure.Repository.BaseRepository
             }
         }
 
-        public async Task<bool> Delete(int id)
+        public async virtual Task<bool> Delete(int id)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace Infrastructure.Repository.BaseRepository
             }
         }
 
-        public async Task<List<T>> GetAll()
+        public async virtual Task<List<T>> GetAll()
         {
             try
             {
@@ -69,7 +69,7 @@ namespace Infrastructure.Repository.BaseRepository
             }
         }
 
-        public async Task<T> GetById(int id)
+        public async virtual Task<T> GetById(int id)
         {
             try
             {
@@ -83,7 +83,7 @@ namespace Infrastructure.Repository.BaseRepository
             }
         }
 
-        public async Task<T> Update(T entity, int id)
+        public async virtual Task<T> Update(T entity, int id)
         {
             try
             {
