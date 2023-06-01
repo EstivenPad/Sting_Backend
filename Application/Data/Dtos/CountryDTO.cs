@@ -12,17 +12,17 @@ namespace Application.Data.Dtos
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public bool IsActive { get; set; }
-        public static CountryDTO operator +(CountryDTO countryDTO, Country country) 
+        public static CountryDTO operator +(CountryDTO countryDTO, Countries country) 
         {
-            countryDTO.Id = country.Id;
+            countryDTO.Id = country.CountryId;
             countryDTO.Name = country.CountryName;
             countryDTO.IsActive = country.Active;
             return countryDTO;
         }
 
-        public static Country operator +(Country country, CountryDTO countryDTO)
+        public static Countries operator +(Countries country, CountryDTO countryDTO)
         {
-            country.Id = countryDTO.Id;
+            country.CountryId = countryDTO.Id;
             country.CountryName = countryDTO.Name;
             country.Active = countryDTO.IsActive;
             return country;

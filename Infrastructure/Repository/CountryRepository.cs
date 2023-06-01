@@ -8,11 +8,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repository
 {
-    public class CountriesRepository : BaseRepository<Country>, ICountryRepository
+    public class CountryRepository : BaseRepository<Countries>, ICountryRepository
     {
-        private new readonly DatabaseContext _context;
-
-        public CountriesRepository(DatabaseContext context) : base(context)
+        private readonly DatabaseContext _context;
+        public CountryRepository(DatabaseContext context) :base(context)
         {
             _context = context;
         }

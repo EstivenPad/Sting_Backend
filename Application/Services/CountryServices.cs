@@ -12,16 +12,16 @@ using System.Threading.Tasks;
 
 namespace Application.Services
 {
-    public class CountriesServices : ICountriesServices
+    public class CountryServices : ICountryServices 
     {
         private readonly ICountryRepository _countryRepository;
 
-        public CountriesServices(ICountryRepository countryRepository)
+        public CountryServices(ICountryRepository countryRepository)
         {
             _countryRepository = countryRepository ?? throw new ArgumentNullException(nameof(countryRepository));
         }
 
-        public async Task<bool> Create(Country country)
+        public async Task<bool> Create(Countries country)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace Application.Services
             }
         }
 
-        public async Task<List<Country>> Get()
+        public async Task<List<Countries>> Get()
         {
             try
             {
@@ -61,7 +61,7 @@ namespace Application.Services
             }
         }
 
-        public async Task<Country> GetById(int id)
+        public async Task<Countries> GetById(int id)
         {
             try
             {
@@ -73,11 +73,11 @@ namespace Application.Services
             }
         }
 
-        public async Task<Country> Update(Country country)
+        public async Task<Countries> Update(Countries country)
         {
             try
             {
-                VerifyCountryInsideDatabase(country.Id);
+                VerifyCountryInsideDatabase(country.CountryId);
 
                 return await _countryRepository.Update(country);
             }

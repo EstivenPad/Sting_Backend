@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Application.Interfaces
 {
-    public interface ICountriesServices
+    public interface ICountryServices
     {
-        Task<List<Country>> Get();
-        Task<Country> GetById(int id);
-        Task<bool> Create(Country country);
-        Task<Country> Update(Country country);
+        Task<List<Countries>> Get();
+        Task<Countries> GetById(int id);
+        Task<bool> Create(Countries country);
+        Task<Countries> Update(Countries country);
         Task<bool> DeleteById(int id);
     }
 }

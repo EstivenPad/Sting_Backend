@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Core.Data.Models
 {
-    public class Country
+    public class Countries
 {
         [Key]
-        public int Id { get; set; }
+        public int CountryId { get; set; }
 
         [Required]
         public string CountryName { get; set; } = string.Empty;

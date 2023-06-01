@@ -13,7 +13,7 @@ namespace Infrastructure.Data.Context
         public DatabaseContext(DbContextOptions options) : base(options)
         {
         }
-        public DbSet<Country> Country { get; set; }
+        public DbSet<Countries> Countries { get; set; }
     
     }
 }

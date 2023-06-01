@@ -22,9 +22,9 @@ namespace Application.Data.Helpers
 
         }
 
-        internal static Country Mapper(CountryDTO country)
+        internal static Countries Mapper(CountryDTO country)
         {
-            Country newCountry = new Country();
+            Countries newCountry = new Countries();
             newCountry += country;
 
             return newCountry;
