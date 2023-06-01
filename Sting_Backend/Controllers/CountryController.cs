@@ -36,27 +36,70 @@ namespace Sting_Backend.Controllers
 
         // GET api/<CountryController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<ActionResult<Countries>> Get(int id)
         {
-            return "value";
+            try
+            {
+                var result = await _countryService.GetById(id);
+
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         // POST api/<CountryController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult<bool>> Post([FromBody] Countries countries)
         {
+            try
+            {
+                var result = await _countryService.Create(countries);
+
+                return Ok();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         // PUT api/<CountryController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut()]
+        public async Task<ActionResult<Countries>> Put([FromBody] Countries countries)
         {
+            try
+            {
+                var result = await _countryService.Update(countries);
+
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         // DELETE api/<CountryController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<ActionResult<bool>> Delete(int id)
         {
+            try
+            {
+                var result = await _countryService.DeleteById(id);
+
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

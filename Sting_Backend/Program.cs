@@ -4,6 +4,7 @@ using Infrastructure.Data.Context;
 using Infrastructure.Interfaces;
 using Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +16,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<DatabaseContext>(
-    option => option.UseSqlServer(builder.Configuration.GetConnectionString("StingConnection"))
-);
+    option => {
+        option.UseSqlServer(builder.Configuration.GetConnectionString("StingConnection"));
+        option.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+    }
+); ;
 builder.Services.AddScoped<ICountryRepository, CountryRepository>();
 builder.Services.AddScoped<ICountryServices, CountryServices>();
 
