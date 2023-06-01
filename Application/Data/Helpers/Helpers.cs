@@ -22,13 +22,6 @@ namespace Application.Data.Helpers
 
         }
 
-        internal static Countries Mapper(CountryDTO country)
-        {
-            Countries newCountry = new Countries();
-            newCountry += country;
-
-            return newCountry;
-        }
 
     }
 }
