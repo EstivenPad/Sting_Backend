@@ -83,11 +83,12 @@ namespace Infrastructure.Repository.BaseRepository
             }
         }
 
-        public async virtual Task<T> Update(T entity, int id)
+        public async virtual Task<T> Update(T entity)
         {
             try
             {
-                var oldEntity = await _context.Set<T>().FindAsync(id) ?? throw new Exception("Entity couldn't be found");
+                //TODO: Evaluate this operation
+                //var oldEntity = await _context.Set<T>().FindAsync(id) ?? throw new Exception("Entity couldn't be found");
                 
                 _context.ChangeTracker.Clear();
                 _context.Set<T>().Update(entity);
@@ -95,7 +96,7 @@ namespace Infrastructure.Repository.BaseRepository
                 var isSaved = _context.SaveChanges() > 0;
 
                 if (!isSaved)
-                    throw new Exception("Employee couldn't be updated");
+                    throw new Exception("Entity couldn't be updated");
 
                 return entity;
             }

@@ -14,5 +14,9 @@ namespace Core.Data.Models
 
         [Required]
         public string CountryName { get; set; } = string.Empty;
+
+
+        [Required]
+        public bool Active { get; set; }
     }
 }

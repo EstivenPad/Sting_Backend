@@ -27,7 +27,7 @@ namespace Infrastructure.Interfaces.BaseRepository
         /// <param name="entity"></param>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<T> Update(T entity, int id);
+        Task<T> Update(T entity);
 
         /// <summary>
         /// This method is a database create operation that takes an entity as a parameter and returns a boolean value indicating whether the operation was successful.
