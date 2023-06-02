@@ -1,4 +1,5 @@
-﻿using Core.Data.Models;
+﻿using Application.Data.Dtos;
+using Core.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace Application.Interfaces
 {
     public interface ICountryServices
     {
-        Task<List<Countries>> Get();
-        Task<Countries> GetById(int id);
-        Task<bool> Create(Countries country);
-        Task<Countries> Update(Countries country);
+        Task<List<CountryDTO>> Get();
+        Task<CountryDTO> GetById(int id);
+        Task<bool> Create(CountryDTO country);
+        Task<CountryDTO> Update(CountryDTO country);
         Task<bool> DeleteById(int id);
     }
 }

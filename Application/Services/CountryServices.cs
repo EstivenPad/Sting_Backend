@@ -1,5 +1,7 @@
-﻿using Application.Data.Helpers;
+﻿using Application.Data.Dtos;
+using Application.Data.Helpers;
 using Application.Interfaces;
+using AutoMapper;
 using Core.Data.Models;
 using Infrastructure.Interfaces;
 using Microsoft.IdentityModel.Tokens;
@@ -16,18 +18,23 @@ namespace Application.Services
     {
         private readonly ICountryRepository _countryRepository;
 
-        public CountryServices(ICountryRepository countryRepository)
+        private readonly IMapper _mapper;
+
+        public CountryServices(ICountryRepository countryRepository, IMapper mapper)
         {
             _countryRepository = countryRepository ?? throw new ArgumentNullException(nameof(countryRepository));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task<bool> Create(Countries country)
+        public async Task<bool> Create(CountryDTO country)
         {
             try
             {
-                Helpers.VerifyNameField(country.CountryName); 
+                var countryToDB = _mapper.Map<Countries>(country);
+
+                Helpers.VerifyNameField(countryToDB.CountryName); 
                                 
-                return await _countryRepository.Create(country);
+                return await _countryRepository.Create(countryToDB);
             }
             catch (Exception)
             {
@@ -49,11 +56,13 @@ namespace Application.Services
             }
         }
 
-        public async Task<List<Countries>> Get()
+        public async Task<List<CountryDTO>> Get()
         {
             try
             {
-                return await _countryRepository.GetAll();
+                var data = await _countryRepository.GetAll();
+
+                return data.Select(country => _mapper.Map<CountryDTO>(country)).ToList();
             }
             catch (Exception)
             {
@@ -61,11 +70,13 @@ namespace Application.Services
             }
         }
 
-        public async Task<Countries> GetById(int id)
+        public async Task<CountryDTO> GetById(int id)
         {
             try
             {
-                return await _countryRepository.GetById(id);
+                var data = await _countryRepository.GetById(id);
+
+                return _mapper.Map<CountryDTO>(data);
             }
             catch (Exception)
             {
@@ -73,13 +84,16 @@ namespace Application.Services
             }
         }
 
-        public async Task<Countries> Update(Countries country)
+        public async Task<CountryDTO> Update(CountryDTO country)
         {
             try
             {
-                VerifyCountryInsideDatabase(country.CountryId);
+                var countryToDB = _mapper.Map<Countries>(country);
 
-                return await _countryRepository.Update(country);
+                VerifyCountryInsideDatabase(countryToDB.CountryId);
+
+                var data = await _countryRepository.Update(countryToDB);
+                return _mapper.Map<CountryDTO>(data);
             }
             catch (Exception)
             {

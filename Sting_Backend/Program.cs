@@ -15,6 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 builder.Services.AddDbContext<DatabaseContext>(
     option => {
         option.UseSqlServer(builder.Configuration.GetConnectionString("StingConnection"));
@@ -24,6 +25,7 @@ builder.Services.AddDbContext<DatabaseContext>(
 builder.Services.AddScoped<ICountryRepository, CountryRepository>();
 builder.Services.AddScoped<ICountryServices, CountryServices>();
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

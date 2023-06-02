@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using Application.Data.Dtos;
+using Application.Interfaces;
 using Core.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,7 +20,7 @@ namespace Sting_Backend.Controllers
 
         // GET: api/<CountryController>
         [HttpGet]
-        public async Task<ActionResult<List<Countries>>> Get()
+        public async Task<ActionResult<List<CountryDTO>>> Get()
         {
             try
             {
@@ -36,7 +37,7 @@ namespace Sting_Backend.Controllers
 
         // GET api/<CountryController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Countries>> Get(int id)
+        public async Task<ActionResult<CountryDTO>> Get(int id)
         {
             try
             {
@@ -53,11 +54,11 @@ namespace Sting_Backend.Controllers
 
         // POST api/<CountryController>
         [HttpPost]
-        public async Task<ActionResult<bool>> Post([FromBody] Countries countries)
+        public async Task<ActionResult<bool>> Post([FromBody] CountryDTO country)
         {
             try
             {
-                var result = await _countryService.Create(countries);
+                var result = await _countryService.Create(country);
 
                 return Ok();
             }
@@ -70,7 +71,7 @@ namespace Sting_Backend.Controllers
 
         // PUT api/<CountryController>/5
         [HttpPut()]
-        public async Task<ActionResult<Countries>> Put([FromBody] Countries countries)
+        public async Task<ActionResult<CountryDTO>> Put([FromBody] CountryDTO countries)
         {
             try
             {
