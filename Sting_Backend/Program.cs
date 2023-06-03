@@ -19,7 +19,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DatabaseContext>(
     option => {
         option.UseSqlServer(builder.Configuration.GetConnectionString("StingConnection"));
-        option.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+        //option.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
     }
 ); ;
 builder.Services.AddScoped<ICountryRepository, CountryRepository>();
