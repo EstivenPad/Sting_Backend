@@ -23,7 +23,7 @@ namespace Infrastructure.Repository.BaseRepository
             try
             {
                 await _context.Set<T>().AddAsync(entity);
-                var isSaved = _context.SaveChanges() > 0;
+                var isSaved = await _context.SaveChangesAsync() > 0;
 
                 if (!isSaved)
                     throw new Exception("Entity couldn't be saved");
@@ -44,7 +44,7 @@ namespace Infrastructure.Repository.BaseRepository
 
                 _context.Set<T>().Remove(entity);
 
-                var isDeleted = _context.SaveChanges() > 0;
+                var isDeleted = await _context.SaveChangesAsync() > 0;
 
                 if (!isDeleted)
                     throw new Exception("Entity couldn't be deleted");
@@ -93,7 +93,7 @@ namespace Infrastructure.Repository.BaseRepository
                 _context.ChangeTracker.Clear();
                 _context.Set<T>().Update(entity);
 
-                var isSaved = _context.SaveChanges() > 0;
+                var isSaved = await _context.SaveChangesAsync() > 0;
 
                 if (!isSaved)
                     throw new Exception("Entity couldn't be updated");
